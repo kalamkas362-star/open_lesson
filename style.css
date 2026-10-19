@@ -1,7 +1,14 @@
+@font-face{
+ font-family:"Lesson Noto Sans";
+ src:url("assets/fonts/noto-sans-kazakh-variable.woff2") format("woff2");
+ font-style:normal;
+ font-weight:100 900;
+ font-display:swap;
+}
 :root{--ink:#10233f;--muted:#6a7790;--paper:#f7f4ec;--white:#fffefa;--gold:#f0ba46;--blue:#94d8ed;--teal:#1b938d;--coral:#df6556;--line:#dfe3e8;--shadow:0 18px 48px #1c304b12}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans",Arial,sans-serif;font-size:15px;line-height:1.55;background-image:radial-gradient(#10233f0a 1px,transparent 1px);background-size:19px 19px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Lesson Noto Sans",Arial,sans-serif;font-size:15px;line-height:1.55;background-image:radial-gradient(#10233f0a 1px,transparent 1px);background-size:19px 19px}
 button,input,textarea,select{font:inherit}
 button{cursor:pointer}
 button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #e0a72e;outline-offset:3px}
@@ -14,7 +21,7 @@ a{color:inherit}
 .brand small{color:var(--muted);font-size:9px;margin-top:3px}
 .heading{text-align:center}
 .heading p{font-size:10px;font-weight:800;letter-spacing:.2em;color:var(--teal);margin:0 0 5px}
-.heading h1{font-family:"Noto Sans",Arial,sans-serif;font-size:clamp(20px,2vw,27px);line-height:1.25;margin:0;font-weight:800;letter-spacing:-.04em}
+.heading h1{font-family:"Lesson Noto Sans",Arial,sans-serif;font-size:clamp(20px,2vw,27px);line-height:1.25;margin:0;font-weight:800;letter-spacing:normal}
 .date{justify-self:end;font-size:12px;color:var(--muted);display:flex;gap:9px;align-items:center;white-space:nowrap}
 .date i{width:8px;height:8px;background:var(--teal);border-radius:50%;box-shadow:0 0 0 4px #1b938d19}
 .nav{position:sticky;top:0;z-index:10;background:#f7f4ecef;backdrop-filter:blur(14px);border-block:1px solid #dfe3e899;display:flex;justify-content:center;gap:8px;padding:10px 16px}
@@ -34,7 +41,7 @@ main{max-width:1240px;margin:0 auto;padding:28px 28px 84px}
 .kicker i{height:1px;background:#cbd3db;flex:1}
 .kicker b{font-size:10px;letter-spacing:0;color:var(--teal);white-space:nowrap}
 .section-head{display:flex;justify-content:space-between;align-items:center;gap:22px;margin-bottom:26px}
-.section-head h2{font-family:"Noto Sans",Arial,sans-serif;font-size:clamp(28px,4vw,45px);line-height:1.13;letter-spacing:-.055em;margin:0 0 10px;font-weight:800}
+.section-head h2{font-family:"Lesson Noto Sans",Arial,sans-serif;font-size:clamp(28px,4vw,45px);line-height:1.13;letter-spacing:normal;margin:0 0 10px;font-weight:800}
 .section-head h2 em,.letter-main h2 em{font-style:normal;color:var(--teal)}
 .section-head p{margin:0;color:var(--muted);max-width:670px;font-size:14px}
 .stamp{border:1px dashed #bec9d2;border-radius:50%;width:102px;height:102px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:9px;font-weight:800;letter-spacing:.12em;transform:rotate(7deg)}
@@ -51,7 +58,7 @@ main{max-width:1240px;margin:0 auto;padding:28px 28px 84px}
 .sun{font-size:91px;line-height:1.15;color:#d95845;text-shadow:4px 4px 0 var(--ink),-2px -2px #fffefa;margin-top:5px}
 .emblem{font-size:87px;color:var(--teal);line-height:1.3;text-shadow:3px 3px 0 var(--ink),-2px -2px #fffefa}
 .skyline{font-size:43px;letter-spacing:6px;line-height:1;color:var(--ink);white-space:nowrap;border-bottom:5px solid var(--ink);padding:0 6px 6px;margin-bottom:18px}
-.front>strong{font-family:"Noto Sans",Arial,sans-serif;font-size:clamp(20px,3vw,30px);font-weight:900;letter-spacing:-.04em}
+.front>strong{font-family:"Lesson Noto Sans",Arial,sans-serif;font-size:clamp(20px,3vw,30px);font-weight:900;letter-spacing:normal}
 .front>small{font-size:10px;letter-spacing:.15em;font-weight:800;margin-top:4px}
 .hint{position:absolute;bottom:18px;font-size:11px;font-weight:700;display:flex;gap:8px;align-items:center}
 .hint b{font-size:19px}
@@ -59,25 +66,25 @@ main{max-width:1240px;margin:0 auto;padding:28px 28px 84px}
 .face.back.coral{background:var(--coral)}
 .backno{position:absolute;top:22px;left:24px;color:var(--gold);font-size:10px;letter-spacing:.15em;font-weight:800}
 .back-symbol{font-size:60px;color:var(--gold);line-height:1.5}
-.face.back strong{font-family:"Noto Sans",Arial,sans-serif;font-size:clamp(21px,2.4vw,30px);line-height:1.25;max-width:430px}
+.face.back strong{font-family:"Lesson Noto Sans",Arial,sans-serif;font-size:clamp(21px,2.4vw,30px);line-height:1.25;max-width:430px}
 .face.back small{font-size:13px;margin-top:15px;color:#dbe5ef}
 .face.back .hint{color:#e9eff8}
 .video-panel{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 25px;background:var(--white);border:1px solid var(--line);border-radius:17px;box-shadow:var(--shadow)}
 .overline{color:var(--teal);font-size:9px;font-weight:800;letter-spacing:.15em}
-.video-panel h3{font-family:"Noto Sans",Arial,sans-serif;font-size:18px;margin:5px 0 2px}
+.video-panel h3{font-family:"Lesson Noto Sans",Arial,sans-serif;font-size:18px;margin:5px 0 2px}
 .video-panel p{color:var(--muted);font-size:12px;margin:0}
 .play{background:var(--coral);padding:13px 19px;color:white;border-radius:11px;text-decoration:none;display:flex;align-items:center;gap:10px;font-size:12px;font-weight:800;white-space:nowrap;box-shadow:0 5px 0 #a93e34;transition:transform .2s}
 .play:hover{transform:translateY(-2px)}
 .play span{width:29px;height:29px;border-radius:50%;background:white;color:var(--coral);display:grid;place-items:center}
 .time{padding:16px 22px;border:1px solid var(--line);border-radius:13px;background:var(--white);min-width:170px;text-align:center;box-shadow:var(--shadow)}
 .time small,.total span,.total small{display:block;color:var(--muted);font-weight:800;font-size:9px;letter-spacing:.11em}
-.time strong{font-family:"Noto Sans",Arial,sans-serif;font-size:20px;white-space:nowrap}
+.time strong{font-family:"Lesson Noto Sans",Arial,sans-serif;font-size:20px;white-space:nowrap}
 .pair-layout{display:grid;grid-template-columns:minmax(245px,.73fr) minmax(0,1.7fr);gap:22px;align-items:start}
 .method,.matching,.reflection,.qr-card,.score-card{background:var(--white);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}
 .method{padding:24px 22px;position:relative;overflow:hidden}
 .label{font-size:9px;letter-spacing:.13em;font-weight:800;color:var(--teal)}
 .method-icon{margin-top:17px;width:58px;height:58px;border-radius:17px;background:#fbe8b8;color:var(--ink);display:grid;place-items:center;font-size:32px}
-.method h3{font-family:"Noto Sans",Arial,sans-serif;font-size:25px;letter-spacing:-.04em;line-height:1.16;margin:14px 0}
+.method h3{font-family:"Lesson Noto Sans",Arial,sans-serif;font-size:25px;letter-spacing:normal;line-height:1.16;margin:14px 0}
 .method hr{border:0;border-top:1px solid var(--line);margin:19px 0}
 .method h4{font-size:13px;margin:0 0 5px}
 .method p{font-size:12px;color:var(--muted);margin:0 0 14px}
@@ -85,10 +92,10 @@ main{max-width:1240px;margin:0 auto;padding:28px 28px 84px}
 .method li{padding:7px 0}
 .method li b{color:var(--ink);white-space:nowrap}
 .total{margin-top:19px;padding-top:17px;border-top:1px solid var(--line);display:flex;align-items:end;justify-content:space-between}
-.total strong{font-family:"Noto Sans",Arial,sans-serif;font-size:31px;line-height:1}
+.total strong{font-family:"Lesson Noto Sans",Arial,sans-serif;font-size:31px;line-height:1}
 .matching{padding:23px}
 .match-heading{display:flex;justify-content:space-between;gap:15px;align-items:center;margin-bottom:18px}
-.match-heading h3{font-family:"Noto Sans",Arial,sans-serif;font-size:20px;margin:5px 0 0;letter-spacing:-.03em}
+.match-heading h3{font-family:"Lesson Noto Sans",Arial,sans-serif;font-size:20px;margin:5px 0 0;letter-spacing:normal}
 .pill{display:inline-block;border-radius:6px;padding:7px 9px;background:#e5f5f1;color:#16736f;font-size:9px;font-weight:800;letter-spacing:.1em;white-space:nowrap}
 .stage{display:grid;grid-template-columns:minmax(150px,1fr) minmax(120px,.8fr) minmax(120px,.8fr);align-items:center;gap:10px;padding:14px 0;border-top:1px solid var(--line)}
 .stage-name{display:flex;align-items:center;gap:10px}
@@ -118,7 +125,7 @@ main{max-width:1240px;margin:0 auto;padding:28px 28px 84px}
 .team.t-blue{border-top:6px solid #72bfde}
 .team.t-teal{border-top:6px solid var(--teal)}
 .team-no{font-size:9px;font-weight:800;color:var(--muted);letter-spacing:.13em}
-.team h3{font-family:"Noto Sans",Arial,sans-serif;font-size:23px;line-height:1.15;letter-spacing:-.05em;margin:12px 0}
+.team h3{font-family:"Lesson Noto Sans",Arial,sans-serif;font-size:23px;line-height:1.15;letter-spacing:normal;margin:12px 0}
 .team>p{font-size:12px;color:var(--muted);margin:0 0 18px}
 .team h4{font-size:11px;margin:0;padding:12px 0 7px;border-top:1px solid var(--line);letter-spacing:.02em}
 .team ol{padding-left:18px;margin:0 0 18px;font-size:11px;color:#485871}
@@ -127,22 +134,22 @@ main{max-width:1240px;margin:0 auto;padding:28px 28px 84px}
 .output b{display:block;color:var(--teal);font-size:9px;letter-spacing:.1em;margin-bottom:4px}
 .rubric{display:grid;grid-template-columns:1.1fr 1fr 1fr .55fr;align-items:center;gap:18px;background:var(--ink);border-radius:14px;padding:19px 22px;color:white;margin-top:19px}
 .rubric>div:first-child small,.rubric-total small{display:block;color:#abbdd1;font-size:9px;letter-spacing:.12em;font-weight:800}
-.rubric>div:first-child strong{display:block;font-family:"Noto Sans",Arial,sans-serif;line-height:1.3;font-size:14px;margin-top:7px}
+.rubric>div:first-child strong{display:block;font-family:"Lesson Noto Sans",Arial,sans-serif;line-height:1.3;font-size:14px;margin-top:7px}
 .rubric>p{font-size:11px;color:#d6e0eb;border-left:1px solid #ffffff2b;padding-left:15px;margin:0}
 .rubric>p b{color:var(--gold);display:block;margin-top:6px}
 .rubric-total{text-align:right}
-.rubric-total strong{display:block;color:var(--gold);font-family:"Noto Sans",Arial,sans-serif;font-size:26px}
+.rubric-total strong{display:block;color:var(--gold);font-family:"Lesson Noto Sans",Arial,sans-serif;font-size:26px}
 .rubric-total>small:last-child{letter-spacing:0;font-size:11px;margin-top:4px}
 .letter-layout{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(260px,.7fr);gap:22px;align-items:start}
 .letter-main{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:var(--shadow);position:relative}
 .method-tag{background:#e3f3ee;color:var(--teal);padding:7px 11px;border-radius:6px;font-size:9px;letter-spacing:.13em;font-weight:800}
-.year{position:absolute;right:24px;top:20px;color:#e9edf0;font-family:"Noto Sans",Arial,sans-serif;font-weight:900;font-size:54px;letter-spacing:-.08em;z-index:0}
-.letter-main h2{position:relative;font-family:"Noto Sans",Arial,sans-serif;font-size:clamp(25px,3.4vw,39px);line-height:1.15;letter-spacing:-.05em;max-width:680px;margin:25px 0}
+.year{position:absolute;right:24px;top:20px;color:#e9edf0;font-family:"Lesson Noto Sans",Arial,sans-serif;font-weight:900;font-size:54px;letter-spacing:-.08em;z-index:0}
+.letter-main h2{position:relative;font-family:"Lesson Noto Sans",Arial,sans-serif;font-size:clamp(25px,3.4vw,39px);line-height:1.15;letter-spacing:normal;max-width:680px;margin:25px 0}
 .situation{display:flex;gap:13px;background:#fbf3dc;border-left:4px solid var(--gold);padding:17px 18px;border-radius:0 10px 10px 0}
 .situation>span{font-family:Georgia,serif;font-size:46px;color:#c98f1b;line-height:.9}
 .situation b{font-size:12px}
 .situation p{margin:6px 0 0;color:#59657b;font-size:12px}
-.instructions h3{font-family:"Noto Sans",Arial,sans-serif;font-size:17px;margin:23px 0 5px}
+.instructions h3{font-family:"Lesson Noto Sans",Arial,sans-serif;font-size:17px;margin:23px 0 5px}
 .instructions>p{font-size:12px;color:var(--muted);margin:0 0 12px}
 .focus{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .focus>div{background:#f4f6f7;border:1px solid var(--line);border-radius:9px;padding:12px}
@@ -155,13 +162,13 @@ main{max-width:1240px;margin:0 auto;padding:28px 28px 84px}
 .write-tools>div{display:flex;gap:8px}
 .score-card{padding:25px;position:sticky;top:90px}
 .score-icon{display:grid;place-items:center;width:53px;height:53px;background:#fbe8b8;border-radius:14px;font-size:27px;margin-bottom:18px}
-.score-card h3{font-family:"Noto Sans",Arial,sans-serif;font-size:24px;margin:7px 0 20px}
+.score-card h3{font-family:"Lesson Noto Sans",Arial,sans-serif;font-size:24px;margin:7px 0 20px}
 .criterion{display:grid;grid-template-columns:27px 1fr;gap:10px;padding:13px 0;border-top:1px solid var(--line);align-items:start}
 .criterion>b{background:#e5f2ef;color:var(--teal);width:27px;height:27px;border-radius:8px;display:grid;place-items:center;font-size:10px}
 .criterion span{font-size:12px}
 .score-total{border-radius:12px;background:var(--ink);color:white;padding:17px;margin-top:16px}
 .score-total>small{display:block;color:#b9c6d7;font-size:9px;font-weight:800;letter-spacing:.12em}
-.score-total>strong{display:block;font-family:"Noto Sans",Arial,sans-serif;font-size:32px;color:var(--gold)}
+.score-total>strong{display:block;font-family:"Lesson Noto Sans",Arial,sans-serif;font-size:32px;color:var(--gold)}
 .score-total>strong small{font-size:12px;color:var(--gold)}
 .score-total>span{font-size:11px;color:white}
 .footnote{color:var(--muted);font-size:10px;margin:15px 0 0}
@@ -171,7 +178,7 @@ main{max-width:1240px;margin:0 auto;padding:28px 28px 84px}
 .reflection>article>b{flex-shrink:0;width:37px;height:37px;border-radius:11px;background:#fbe8b8;display:grid;place-items:center}
 .reflection>article:nth-of-type(3)>b{background:#d3eaf6}
 .reflection>article:nth-of-type(4)>b{background:#d8eee7}
-.reflection h3{font-family:"Noto Sans",Arial,sans-serif;font-size:16px;line-height:1.3;margin:0 0 5px}
+.reflection h3{font-family:"Lesson Noto Sans",Arial,sans-serif;font-size:16px;line-height:1.3;margin:0 0 5px}
 .reflection article p{font-size:12px;color:var(--muted);margin:0}
 .note{background:#f0f5f4;border-radius:9px;padding:13px;font-size:11px;color:#526679;margin:20px 0 0}
 .qr-card{padding:24px;text-align:center;display:flex;flex-direction:column;align-items:center}
@@ -180,12 +187,12 @@ main{max-width:1240px;margin:0 auto;padding:28px 28px 84px}
 #qrcode{width:100%;height:100%;display:grid;place-items:center;overflow:hidden}
 #qrcode canvas,#qrcode img{width:100%!important;height:100%!important;object-fit:contain;image-rendering:pixelated}
 .qr-placeholder{width:100%;height:100%;display:grid;place-items:center;font-size:55px;font-family:monospace;font-weight:900;background:repeating-conic-gradient(#10233f 0% 25%,white 0% 50%) 50%/18px 18px;color:transparent}
-.qr-card h3{font-family:"Noto Sans",Arial,sans-serif;font-size:23px;margin:0}
+.qr-card h3{font-family:"Lesson Noto Sans",Arial,sans-serif;font-size:23px;margin:0}
 .qr-card>p{font-size:12px;color:var(--muted);margin:4px 0 16px}
 .qr-card>small{font-size:10px;color:var(--muted);margin-top:12px}
 #open-qr{width:100%}
 .finish{margin-top:20px;padding:19px 22px;display:flex;flex-direction:column;gap:4px;align-items:center;background:#e3f3ee;border:1px solid #cae7df;border-radius:13px}
-.finish strong{font-family:"Noto Sans",Arial,sans-serif;font-size:18px}
+.finish strong{font-family:"Lesson Noto Sans",Arial,sans-serif;font-size:18px}
 .finish span{font-size:12px;color:#526f70}
 footer{max-width:1240px;margin:auto;padding:20px 28px 95px;border-top:1px solid #dfe3e8;display:flex;justify-content:space-between;gap:15px;color:#7d889a;font-size:9px;font-weight:700;letter-spacing:.1em}
 footer b{color:var(--ink)}
@@ -196,7 +203,7 @@ footer b{color:var(--ink)}
 button:disabled{opacity:.4;cursor:not-allowed}
 dialog{width:min(520px,calc(100% - 30px));border:1px solid var(--line);border-radius:18px;padding:25px;box-shadow:0 25px 90px #10233f4d;color:var(--ink)}
 dialog::backdrop{background:#10233f85;backdrop-filter:blur(4px)}
-dialog h2{font-family:"Noto Sans",Arial,sans-serif;margin:0 0 8px}
+dialog h2{font-family:"Lesson Noto Sans",Arial,sans-serif;margin:0 0 8px}
 dialog p{font-size:13px;color:var(--muted)}
 dialog label{display:block;font-size:11px;font-weight:800;margin:18px 0 7px}
 dialog input{width:100%;border:1px solid #d3dbe2;padding:12px;border-radius:9px}
@@ -219,7 +226,7 @@ dialog input{width:100%;border:1px solid #d3dbe2;padding:12px;border-radius:9px}
 .objectives-panel{display:grid;grid-template-columns:230px minmax(0,1fr);gap:18px;background:#fffefa;border:1px solid #dfe3e8;border-radius:18px;padding:18px;margin:0 0 26px;box-shadow:0 15px 40px #1c304b0d}
 .objectives-title{background:#102c55;color:white;border-radius:13px;padding:18px;display:flex;flex-direction:column;justify-content:center}
 .objectives-title .label{color:#f6c55d}
-.objectives-title h3{font-family:"Noto Sans",Arial,sans-serif;font-size:22px;line-height:1.2;margin:9px 0}
+.objectives-title h3{font-family:"Lesson Noto Sans",Arial,sans-serif;font-size:22px;line-height:1.2;margin:9px 0}
 .objectives-title p{font-size:12px;color:#e0eaf5;margin:0}
 .objectives-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .objective{border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px;font-size:12px;font-weight:600;line-height:1.6}
