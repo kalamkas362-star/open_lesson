@@ -39,31 +39,122 @@
   });
 
   const matchResult = $("#match-result");
+  const cardBank = $("#card-bank");
+  let selectedCard = null;
+
+  function clearSelected() {
+    $$(".drag-card.is-selected").forEach(card => card.classList.remove("is-selected"));
+    selectedCard = null;
+  }
+  function placeCard(card, slot) {
+    if (!card || !slot) return;
+    const existing = $(".drag-card", slot);
+    if (existing && existing !== card) cardBank.appendChild(existing);
+    slot.appendChild(card);
+    clearSelected();
+    $$(".stage").forEach(stage => stage.classList.remove("correct", "incorrect"));
+    matchResult.textContent = "Барлық карточканы орналастыр да, тексер.";
+    matchResult.style.color = "";
+  }
+  function chooseCard(card) {
+    if (selectedCard === card) {
+      clearSelected();
+      return;
+    }
+    clearSelected();
+    selectedCard = card;
+    card.classList.add("is-selected");
+    showToast("Енді сипаттама қоятын ұяшықты таңда.");
+  }
+
+  // Тінтуірмен сүйреп апару және телефонда басып-таңдау тәсілдері қатар жұмыс істейді.
+  document.addEventListener("dragstart", event => {
+    const card = event.target.closest(".drag-card");
+    if (!card) return;
+    selectedCard = card;
+    card.classList.add("is-selected");
+    if (event.dataTransfer) {
+      event.dataTransfer.setData("text/plain", card.dataset.letter);
+      event.dataTransfer.effectAllowed = "move";
+    }
+  });
+  document.addEventListener("dragend", () => {
+    $$(".drop-slot.drag-hover").forEach(slot => slot.classList.remove("drag-hover"));
+    $$(".drag-card").forEach(card => card.classList.remove("is-selected"));
+    selectedCard = null;
+  });
+  $$(".drop-slot").forEach(slot => {
+    slot.addEventListener("dragover", event => {
+      event.preventDefault();
+      slot.classList.add("drag-hover");
+      if (event.dataTransfer) event.dataTransfer.dropEffect = "move";
+    });
+    slot.addEventListener("dragleave", () => slot.classList.remove("drag-hover"));
+    slot.addEventListener("drop", event => {
+      event.preventDefault();
+      slot.classList.remove("drag-hover");
+      const letter = event.dataTransfer?.getData("text/plain");
+      const card = letter ? $(`.drag-card[data-letter="${letter}"]`) : selectedCard;
+      if (card) placeCard(card, slot);
+    });
+    slot.addEventListener("click", () => {
+      if (selectedCard) placeCard(selectedCard, slot);
+      else {
+        const card = $(".drag-card", slot);
+        if (card) chooseCard(card);
+      }
+    });
+    slot.addEventListener("keydown", event => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        if (selectedCard) placeCard(selectedCard, slot);
+        else {
+          const card = $(".drag-card", slot);
+          if (card) chooseCard(card);
+        }
+      }
+    });
+  });
+
+  document.addEventListener("click", event => {
+    const card = event.target.closest(".drag-card");
+    if (card) {
+      event.preventDefault();
+      event.stopPropagation();
+      chooseCard(card);
+      return;
+    }
+    if (event.target.closest("#card-bank")) return;
+  });
+
   $("#check-match").addEventListener("click", () => {
     let score = 0;
-    let complete = true;
+    let allFilled = true;
     $$(".stage").forEach(stage => {
-      const selects = $$("select", stage);
-      const values = selects.map(select => select.value);
-      if (values.some(value => !value)) complete = false;
-      const correct = values.slice().sort().join(",") === stage.dataset.answer.split(",").sort().join(",");
+      const slots = $$(".drop-slot", stage);
+      const values = slots.map(slot => $(".drag-card", slot)?.dataset.letter || "");
+      if (values.some(value => !value)) allFilled = false;
+      const correct = values.every(Boolean) &&
+        values.slice().sort().join(",") === stage.dataset.answer.split(",").sort().join(",");
       stage.classList.remove("correct", "incorrect");
       if (values.every(Boolean)) {
         stage.classList.add(correct ? "correct" : "incorrect");
         if (correct) score += 1;
       }
     });
-    matchResult.textContent = complete
-      ? `Нәтиже: ${score}/3 балл` 
-      : `Әр кезеңнің екі сипаттамасын таңдаңыз. Қазіргі нәтиже: ${score}/3 балл`;
-    matchResult.style.color = complete && score === 3 ? "#16816f" : "var(--ink)";
-    showToast(complete ? `Тексеру аяқталды: ${score}/3 балл` : "Барлық кезең үшін екі жауаптан таңдаңыз.");
+    matchResult.textContent = allFilled
+      ? `Нәтиже: ${score}/3 балл`
+      : `Барлық ұяшықты толтыр. Қазіргі нәтиже: ${score}/3 балл`;
+    matchResult.style.color = allFilled && score === 3 ? "#16816f" : "var(--ink)";
+    showToast(allFilled ? `Тексеру аяқталды: ${score}/3 балл` : "Әр кезеңнің екі ұяшығына да сипаттама орналастыр.");
   });
+
   $("#reset-match").addEventListener("click", () => {
-    $$(".stage").forEach(stage => {
-      $$("select", stage).forEach(select => { select.value = ""; });
-      stage.classList.remove("correct", "incorrect");
-    });
+    $$(".drag-card").sort((a, b) => a.dataset.letter.localeCompare(b.dataset.letter))
+      .forEach(card => cardBank.appendChild(card));
+    $$(".stage").forEach(stage => stage.classList.remove("correct", "incorrect"));
+    $$(".drop-slot").forEach(slot => slot.classList.remove("drag-hover"));
+    clearSelected();
     matchResult.textContent = "Ең жоғары ұпай: 3 балл";
     matchResult.style.color = "";
   });
@@ -105,7 +196,7 @@
 
   const dialog = $("#qr-dialog");
   const qrUrlInput = $("#qr-url");
-  let activeQrUrl = "https://t.me/";
+  let activeQrUrl = "https://t.me/FEEDBACKBERMAGANBET_BOT";
   try {
     activeQrUrl = localStorage.getItem("openLessonFeedbackUrl") || activeQrUrl;
   } catch (_) {}
