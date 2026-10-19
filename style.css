@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800;900&display=swap');
 :root{--ink:#10233f;--muted:#6a7790;--paper:#f7f4ec;--white:#fffefa;--gold:#f0ba46;--blue:#94d8ed;--teal:#1b938d;--coral:#df6556;--line:#dfe3e8;--shadow:0 18px 48px #1c304b12}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -266,7 +265,8 @@ dialog input{width:100%;border:1px solid #d3dbe2;padding:12px;border-radius:9px}
 .bank-title{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:12px}
 .bank-title>span{font-size:10px;letter-spacing:.1em;color:#173d66;font-weight:900}
 .bank-title small{font-size:10px;color:#77859a;text-align:right}
-.card-bank{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.card-bank{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;min-height:64px}
+.card-bank:empty::after{content:"Карточканы қайтару үшін осында әкел";grid-column:1/-1;display:grid;place-items:center;text-align:center;border:2px dashed #b8cddc;border-radius:9px;color:#5d7285;font-size:11px;padding:12px}
 .drag-card{touch-action:manipulation;display:grid;grid-template-columns:31px minmax(0,1fr);gap:9px;align-items:start;min-width:0;width:100%;border:1px solid #d9e2ea;border-radius:10px;background:white;padding:10px;text-align:left;color:#34455f;font-size:10px;line-height:1.5;cursor:grab;box-shadow:0 3px 0 #152c4210;transition:transform .15s,box-shadow .15s,border-color .15s}
 .drag-card:hover{transform:translateY(-2px);box-shadow:0 5px 12px #17304b12;border-color:#86c6e2}
 .drag-card:active{cursor:grabbing}
@@ -304,4 +304,60 @@ dialog input{width:100%;border:1px solid #d3dbe2;padding:12px;border-radius:9px}
  .bank-title small{text-align:left}
  .drag-card{font-size:11px}
  .drop-slot .drag-card{font-size:9px}
+}
+
+/* ҚМЖ бойынша жаңартылған сабақ: жергілікті суреттер және анық мәтін. */
+.objectives-title{background:#dff1fb;color:var(--ink)}
+.objectives-title .label{color:#176b87}
+.objectives-title p{color:#42617b}
+.strategy-logo{display:grid;place-items:center;width:144px;height:177px;background:#fff;border:4px solid white;border-radius:16px;margin:12px 0;box-shadow:0 6px 0 #10233f1a;overflow:hidden;flex-shrink:0}
+.strategy-logo img{display:block;width:100%;height:100%;object-fit:contain}
+.face.back{background:#dff3f0;color:var(--ink)}
+.face.back.coral{background:#ffe4de;color:var(--ink)}
+.backno,.back-symbol{color:#177a75}
+.face.back.coral .backno,.face.back.coral .back-symbol{color:#a63d3d}
+.face.back small,.face.back .hint{color:#485e73}
+.method .method-time{font-size:12px;margin:16px 0 0;color:#176b72}
+.stage-board{grid-template-columns:1fr}
+.stage{display:grid;grid-template-columns:minmax(120px,.75fr) minmax(0,1.5fr);gap:12px;align-items:center}
+.stage-name{margin:0}
+.drop-slot{min-height:116px}
+.drop-slot .drag-card{font-size:11px;line-height:1.45;grid-template-columns:1fr;padding:7px;gap:6px;overflow-wrap:anywhere}
+.drag-card{touch-action:pan-y}
+.drag-handle{touch-action:none;cursor:grab}
+.drag-card.is-dragging{opacity:.35}
+.drag-preview{position:fixed;pointer-events:none;z-index:1000;opacity:.95;margin:0;max-width:min(300px,85vw);transform:none!important;box-shadow:0 12px 30px #10233f33}
+body.is-card-dragging{user-select:none;-webkit-user-select:none}
+#card-bank.drag-hover{outline:3px solid #188db8;outline-offset:4px;border-radius:10px;min-height:54px}
+.rubric{background:#e4f3ed;color:var(--ink);border:1px solid #beded2}
+.rubric>div:first-child small,.rubric-total small{color:#416c64}
+.rubric>p{color:#38534f;border-color:#bdd8cd}
+.rubric>p b,.rubric-total strong{color:#176f5f}
+.team.t-gold{background:#fffaf0}.team.t-blue{background:#f1faff}.team.t-teal{background:#f0faf5}
+.team .poster-tip{font-size:11px;color:#47605f;line-height:1.5;margin:13px 0 0}
+.map-fields{display:flex;flex-wrap:wrap;gap:7px;list-style:none;padding:0;margin:0 0 20px}
+.map-fields li{background:white;border:1px solid var(--line);border-radius:20px;padding:5px 10px;font-size:11px;color:#466377}
+.local-save-note{font-size:11px;color:var(--muted);margin:7px 0}
+.criterion strong{display:block;color:#176f5f;margin-top:5px;font-size:11px}
+.feedback-link{display:block;text-decoration:none;width:100%;text-align:center;padding:13px}
+.qr-card #open-qr{margin-top:17px;font-size:10px}
+.original-qr-link{font-size:11px;color:#35617d;margin-top:14px}
+#feedback-username{overflow-wrap:anywhere;max-width:100%}
+#qrcode img{image-rendering:auto}
+.dialog-actions{flex-wrap:wrap}
+.kicker{flex-wrap:wrap}
+@media(max-width:700px){
+ .stage{display:block}
+ .stage-name{margin-bottom:12px}
+ .strategy-logo{width:120px;height:148px}
+ .face.front>strong{font-size:23px}
+ .back-symbol{font-size:48px}
+ .face.back strong{font-size:24px}
+ .matching .match-heading{flex-wrap:wrap}
+ .method .method-time{grid-column:1/-1}
+ .write-tools{align-items:flex-start;flex-wrap:wrap}
+ .year{top:15px;font-size:34px}
+ .method-tag{position:relative;display:inline-block;max-width:calc(100% - 74px);font-size:8px;letter-spacing:.06em}
+ .group-intro b{white-space:normal}
+ .rubric>p{border-top-color:#bdd8cd}
 }
