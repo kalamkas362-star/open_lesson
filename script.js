@@ -97,7 +97,9 @@
       const card = letter ? $(`.drag-card[data-letter="${letter}"]`) : selectedCard;
       if (card) placeCard(card, slot);
     });
-    slot.addEventListener("click", () => {
+    slot.addEventListener("click", event => {
+      // Карточканың өзін басқанда, таңдауды құжат деңгейіндегі ортақ өңдегіш орындайды.
+      if (event.target.closest(".drag-card")) return;
       if (selectedCard) placeCard(selectedCard, slot);
       else {
         const card = $(".drag-card", slot);
