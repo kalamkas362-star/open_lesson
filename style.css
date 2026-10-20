@@ -370,105 +370,11 @@ body.is-card-dragging{user-select:none;-webkit-user-select:none}
 }
 
 
-/* Ортасына орналастырылған, әр экранға арналған 30 минуттық жұмыс істейтін сағат */
-.lesson-timer-center{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  width:100%;
-  margin:3px auto 24px;
-  position:relative;
-  z-index:1;
-}
-.lesson-timer{
-  width:min(270px,100%);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  text-align:center;
-  padding:15px 18px 13px;
-  background:linear-gradient(145deg,#ffffff 0%,#f0faff 55%,#f2fbf4 100%);
-  border:1px solid #c8e2e8;
-  border-radius:22px;
-  box-shadow:0 8px 25px #346c8018, inset 0 1px 0 #fff;
-}
-.timer-dial{
-  width:112px;
-  height:112px;
-  position:relative;
-  display:grid;
-  place-items:center;
-  margin:0 auto 5px;
-}
-.timer-ring{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg);overflow:visible}
-.timer-ring circle{fill:none}
-.timer-ring-bg{stroke:#dceaf0;stroke-width:7}
-.timer-ring-progress{
-  stroke:#1b938d;
-  stroke-width:7;
-  stroke-linecap:round;
-  transition:stroke-dashoffset .25s linear,stroke .2s;
-}
-.timer-ring-progress.timer-finished-ring{stroke:#df6556}
-.timer-digits{
-  position:absolute;
-  inset:0;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  line-height:1.12;
-}
-.timer-clock{
-  font-family:"Lesson Noto Sans","Noto Sans",Arial,sans-serif;
-  font-weight:900;
-  font-variant-numeric:tabular-nums;
-  letter-spacing:-.045em;
-  font-size:25px;
-  color:#10233f;
-}
-.timer-unit{font-size:8px;font-weight:900;letter-spacing:.12em;color:#55728a;margin-top:5px}
-.timer-title{font-size:10px;font-weight:900;letter-spacing:.14em;color:#176f68;margin-top:1px}
-.timer-subtitle{font-size:10px;color:#6a8291;margin-top:3px}
-.timer-controls{display:flex;justify-content:center;flex-wrap:wrap;gap:7px;margin-top:11px}
-.timer-controls button{
-  min-height:36px;
-  padding:8px 11px;
-  border:1px solid #c8e2e8;
-  border-radius:9px;
-  font-family:"Lesson Noto Sans","Noto Sans",Arial,sans-serif;
-  font-size:10px;
-  font-weight:800;
-  color:#173a50;
-  background:#fff;
-  cursor:pointer;
-  transition:background .15s,transform .15s;
-}
-.timer-controls .timer-toggle{background:#dff4ed;border-color:#b5dfd2;color:#176f68}
-.timer-controls button:hover{transform:translateY(-1px);background:#f8fcff}
-.timer-controls .timer-toggle:hover{background:#cbecdf}
-.timer-status{min-height:15px;margin-top:8px;color:#668094;font-size:9px;font-weight:700}
-.lesson-timer.timer-is-running .timer-status{color:#17786e}
-.lesson-timer.timer-is-finished{background:linear-gradient(145deg,#fff,#fff5f2);border-color:#efc5be}
-.lesson-timer.timer-is-finished .timer-title,.lesson-timer.timer-is-finished .timer-status{color:#b34c40}
-.timer-controls button:focus-visible{outline:3px solid #3c9dd0;outline-offset:2px}
-@media(max-width:700px){
-  .lesson-timer-center{margin:0 auto 20px}
-  .lesson-timer{width:min(260px,100%);padding:13px 14px 11px}
-  .timer-dial{width:104px;height:104px}
-  .timer-clock{font-size:24px}
-  .timer-controls button{min-height:40px;font-size:10px}
-}
-@media(prefers-reduced-motion:reduce){
-  .timer-ring-progress,.timer-controls button{transition:none}
-}
-
-
 /* Әр тапсырманың уақыт көрсеткішіне жапсарлас шағын, жұмыс істейтін таймер */
-.task-time{min-width:165px}
+.task-time,#screen-2 .time,#screen-3 .time,#screen-5 .time{min-width:225px}
 .task-countdown{
   display:grid;
-  grid-template-columns:42px minmax(62px,1fr) 58px;
+  grid-template-columns:38px minmax(52px,1fr) 54px;
   align-items:center;
   gap:8px;
   width:100%;
@@ -517,7 +423,7 @@ body.is-card-dragging{user-select:none;-webkit-user-select:none}
 #screen-4 .score-total .task-countdown.is-finished .task-clock-symbol,
 #screen-4 .score-total .task-countdown.is-finished .task-timer-status{color:#ffaca0}
 @media(max-width:700px){
-  .task-countdown{grid-template-columns:42px minmax(62px,1fr) 58px;gap:7px}
+  .task-countdown{grid-template-columns:38px minmax(52px,1fr) 54px;gap:6px}
   .task-clock-readout{font-size:17px}
   .task-timer-controls button{width:29px;min-width:29px;height:34px}
 }
