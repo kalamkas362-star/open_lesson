@@ -7,9 +7,145 @@
   const navItems = $$(".nav-item");
   let current = 0;
   let pointerDrag = null;
+
+  // Әр экранға арналған дербес 30 минуттық кері санау таймері.
+  // Экран алғаш ашылғанда автоматты басталады; басқа экранға ауысқанда да жалғасады.
+  const LESSON_TIMER_MS = 30 * 60 * 1000;
+  const TIMER_RING_CIRCUMFERENCE = 2 * Math.PI * 48;
+  const screenTimers = new Map();
+
+  function injectScreenTimers() {
+    screens.forEach((screen, index) => {
+      if ($(".lesson-timer-center", screen)) return;
+      const kicker = $(".kicker", screen);
+      if (!kicker) return;
+
+      const center = document.createElement("div");
+      center.className = "lesson-timer-center";
+      center.innerHTML = `
+        <div class="lesson-timer" aria-label="${index + 1}-экранның 30 минуттық таймері">
+          <div class="timer-dial">
+            <svg class="timer-ring" viewBox="0 0 112 112" aria-hidden="true">
+              <circle class="timer-ring-bg" cx="56" cy="56" r="48"></circle>
+              <circle class="timer-ring-progress" cx="56" cy="56" r="48"
+                stroke-dasharray="${TIMER_RING_CIRCUMFERENCE}" stroke-dashoffset="0"></circle>
+            </svg>
+            <div class="timer-digits">
+              <span class="timer-clock" aria-live="off">30:00</span>
+              <span class="timer-unit">30 МИНУТ</span>
+            </div>
+          </div>
+          <div class="timer-title">САБАҚ УАҚЫТЫ</div>
+          <div class="timer-subtitle">Осы экранға 30 минут</div>
+          <div class="timer-controls">
+            <button type="button" class="timer-toggle" aria-label="Таймерді кідірту">Ⅱ Үзіліс</button>
+            <button type="button" class="timer-reset" aria-label="Таймерді қайта бастау">↻ Қайта бастау</button>
+          </div>
+          <div class="timer-status" aria-live="polite">Дайын · 30 минут</div>
+        </div>`;
+      kicker.insertAdjacentElement("afterend", center);
+
+      const state = {
+        remaining: LESSON_TIMER_MS,
+        endAt: null,
+        running: false,
+        started: false
+      };
+      screenTimers.set(screen, state);
+
+      $(".timer-toggle", center).addEventListener("click", () => {
+        if (state.running) {
+          state.remaining = Math.max(0, state.endAt - Date.now());
+          state.endAt = null;
+          state.running = false;
+          state.started = true;
+          updateScreenTimer(screen, state, "Үзілісте");
+        } else {
+          if (state.remaining <= 0) state.remaining = LESSON_TIMER_MS;
+          state.endAt = Date.now() + state.remaining;
+          state.running = true;
+          state.started = true;
+          updateScreenTimer(screen, state);
+        }
+      });
+
+      $(".timer-reset", center).addEventListener("click", () => {
+        state.remaining = LESSON_TIMER_MS;
+        state.endAt = Date.now() + LESSON_TIMER_MS;
+        state.running = true;
+        state.started = true;
+        updateScreenTimer(screen, state, "Қайта басталды · 30 минут");
+      });
+      updateScreenTimer(screen, state);
+    });
+  }
+
+  function formatTimerTime(milliseconds) {
+    const totalSeconds = Math.max(0, Math.ceil(milliseconds / 1000));
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    return String(minutes).padStart(2, "0") + ":" + String(seconds).padStart(2, "0");
+  }
+
+  function updateScreenTimer(screen, state, customStatus = "") {
+    const widget = $(".lesson-timer", screen);
+    if (!widget) return;
+    const remaining = state.running ? Math.max(0, state.endAt - Date.now()) : state.remaining;
+    const time = formatTimerTime(remaining);
+    $(".timer-clock", widget).textContent = time;
+
+    const progress = Math.max(0, Math.min(1, remaining / LESSON_TIMER_MS));
+    const ring = $(".timer-ring-progress", widget);
+    ring.style.strokeDasharray = String(TIMER_RING_CIRCUMFERENCE);
+    ring.style.strokeDashoffset = String(TIMER_RING_CIRCUMFERENCE * (1 - progress));
+    ring.classList.toggle("timer-finished-ring", remaining <= 0);
+
+    const toggle = $(".timer-toggle", widget);
+    toggle.textContent = state.running ? "Ⅱ Үзіліс" : (remaining <= 0 ? "▶ Қайта қосу" : "▶ Жалғастыру");
+    toggle.setAttribute("aria-label", state.running ? "Таймерді кідірту" : "Таймерді жалғастыру");
+
+    const status = $(".timer-status", widget);
+    if (customStatus) status.textContent = customStatus;
+    else if (remaining <= 0) status.textContent = "Уақыт аяқталды!";
+    else if (state.running) status.textContent = "Уақыт есептеліп жатыр";
+    else if (state.started) status.textContent = "Таймер тоқтатылды";
+    else status.textContent = "Дайын · 30 минут";
+    widget.classList.toggle("timer-is-running", state.running);
+    widget.classList.toggle("timer-is-finished", remaining <= 0);
+  }
+
+  function activateScreenTimer(index) {
+    const screen = screens[index];
+    const state = screenTimers.get(screen);
+    if (!state || state.started) return;
+    state.started = true;
+    state.running = true;
+    state.endAt = Date.now() + state.remaining;
+    updateScreenTimer(screen, state);
+  }
+
+  function tickScreenTimers() {
+    const now = Date.now();
+    screenTimers.forEach((state, screen) => {
+      if (!state.running) return;
+      state.remaining = Math.max(0, state.endAt - now);
+      if (state.remaining <= 0) {
+        state.running = false;
+        state.endAt = null;
+        updateScreenTimer(screen, state, "Уақыт аяқталды!");
+      } else {
+        updateScreenTimer(screen, state);
+      }
+    });
+  }
+
+  injectScreenTimers();
+  window.setInterval(tickScreenTimers, 250);
+
   function showScreen(index, updateHistory = true, resetScroll = true) {
     if (pointerDrag) finishPointerDrag(false);
     current = Math.max(0, Math.min(screens.length - 1, index));
+    activateScreenTimer(current);
     screens.forEach((screen, i) => {
       const active = i === current;
       screen.hidden = !active;
